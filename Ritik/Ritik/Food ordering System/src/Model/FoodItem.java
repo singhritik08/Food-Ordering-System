@@ -5,10 +5,10 @@ public class FoodItem {
     private int restaurantID;
     private String name;
     private String description;
-    private String price;
+    private double price;
     private boolean availability;
 
-    public FoodItem(int foodItemId, int restaurantID, String name, String description, String price, boolean availability) {
+    public FoodItem(int foodItemId, int restaurantID, String name, String description, double price, boolean availability) {
         this.foodItemId = foodItemId;
         this.restaurantID = restaurantID;
         this.name = name;
@@ -49,11 +49,11 @@ public class FoodItem {
         this.description = description;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

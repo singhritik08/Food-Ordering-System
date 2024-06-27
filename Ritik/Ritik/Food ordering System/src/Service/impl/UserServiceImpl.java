@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
         return email;
     }
 
+
+
     public User getuserProfile(String username) {
         return userepo.findbyUsername(username);
     }

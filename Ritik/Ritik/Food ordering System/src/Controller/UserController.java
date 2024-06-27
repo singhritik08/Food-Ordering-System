@@ -26,4 +26,5 @@ public class UserController {
     public String getemailByUsernameAndPassword(String username, String password) {
         return userService.getemailByUsernameAndPassword(username,password);
     }
+
 }

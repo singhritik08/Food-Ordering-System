@@ -1,5 +1,6 @@
 package Repostitiory.impl;
 
+import Model.Restaurant;
 import Model.User;
 import Repostitiory.UserRepository;
 
