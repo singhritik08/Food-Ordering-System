@@ -105,19 +105,21 @@ public class UI {
                             System.out.println("Please select an option:");
                             System.out.println("1. View Restaurant Profile");
                             System.out.println("2. Create  Restaurants");
-                            System.out.println("3. Create Food Items");
-                            System.out.println("4. Update Food Items");
-                            System.out.println("5. Delete Food Items");
-                            System.out.println("6. View Orders");
-                            System.out.println("7. Update Order Status");
-                            System.out.println("8. Logout");
+                            System.out.println("3. Update  Restaurants");
+                            System.out.println("4. Delete  Restaurants");
+                            System.out.println("5. Create Food Items");
+                            System.out.println("6. Update Food Items");
+                            System.out.println("7. Delete Food Items");
+                            System.out.println("8. View Orders");
+                            System.out.println("9. Update Order Status");
+                            System.out.println("10. Logout");
 
                             int userChoice = sc.nextInt();
                             sc.nextLine();  // Consume newline
 
                             switch (userChoice) {
                                 case 1:
-                                    // View User Profile
+                                    // View Restaurant Profile
                                     List<User> users = userController.getuserprofile(userId);
                                     if (users != null) {
                                         for (User user : users) {
@@ -151,8 +153,21 @@ public class UI {
                                     }
                                     break;
                                 case 3:
-                                    // Create Food Items
                                     int restaurantId = restaurantController.getRestIdbyOwnerId(userId);
+                                    System.out.print("Enter restaurant name: ");
+                                    String restNames = sc.nextLine();
+                                    System.out.print("Enter restaurant address: ");
+                                    String restAddresss = sc.nextLine();
+                                    System.out.print("Enter owner phone number: ");
+                                    String ownerPhoneNumbers = sc.nextLine();
+                                    System.out.println(restaurantController.updateRestaurant(restaurantId,userId,restNames,restAddresss,ownerPhoneNumbers));
+                                case 4:
+                                    System.out.println("Enter Restaurant Id to be deleted");
+                                    int resId = sc.nextInt();
+                                    boolean isdeleted = restaurantController.deleteRestaurant(resId);
+                                case 5:
+                                    // Create Food Items
+                                    restaurantId = restaurantController.getRestIdbyOwnerId(userId);
 
                                     System.out.print("Enter food name: ");
                                     String foodName = sc.nextLine();
@@ -186,7 +201,7 @@ public class UI {
                                         }
                                     }
                                     break;
-                                case 4:
+                                case 6:
                                     restaurantId = restaurantController.getRestIdbyOwnerId(userId);
                                     System.out.println("Enter the food Item Id TO be updated");
                                     int id=sc.nextInt();
@@ -208,17 +223,16 @@ public class UI {
                                         }
                                     }
                                     System.out.println(foodController.updateFoodItem(id, restaurantId, foodNames, foodDescriptions, foodPrices, isAvailabl));
-                                case 5:
+                                case 7:
                                     System.out.println("Enter the food item Id to be deleted");
                                     int foodItemId =sc.nextInt();
                                     boolean isfooditemdeleted = foodController.deleteFoodItem(foodItemId);
                                           if (isfooditemdeleted == true) {
                                           System.out.println("item deleted");
-//                                        System.out.println();
                                           } else {
                                             System.out.println("Invalid food item id");
                                           }
-                                case 6:
+                                case 8:
                                     // View Orders
                                     restaurantId = restaurantController.getRestIdbyOwnerId(userId);
                                     List<Order>  restaurantOrders = orderController.getOrdersByRestaurant(restaurantId);
@@ -230,14 +244,14 @@ public class UI {
                                         }
                                     }
                                     break;
-                                case 7:
+                                case 9:
                                     // Update food Item
                                     System.out.println("Enter order Id to be updated");
                                     int orderId= sc.nextInt();
                                     System.out.println("Enter status to update");
                                     String status = sc.nextLine();
                                     orderController.updateOrder(orderId,status);
-                                case 8:
+                                case 10:
                                     System.out.println("Logging out...");
                                     break;
                                 default:
@@ -245,7 +259,7 @@ public class UI {
                                     break;
                             }
 
-                            if (userChoice == 8) {
+                            if (userChoice == 10) {
                                 break;
                             }
                         } else if (role.equals("customer")) {
